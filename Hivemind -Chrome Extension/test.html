@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                width: 80px;
+                text-align: center;
+            }
+            label {
+                width: 50px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="elem">Click and <b>edit</b>, please</div>
+        <button id="he" onclick="ifs()"></button>
+        <script>
+            let observer = new MutationObserver((mutationRecords) => {
+                console.log(mutationRecords[0].addedNodes[3]);
+            });
+
+            let buttn = document.getElementById("elem");
+
+            function ifs() {
+                buttn.innerHTML += "<div>hii<div>";
+            }
+
+            // observe everything except attributes
+            observer.observe(elem, {
+                childList: true, // observe direct children
+                subtree: true, // and lower descendants too
+                characterDataOldValue: true, // pass old data to callback
+            });
+        </script>
+    </body>
+</html>
